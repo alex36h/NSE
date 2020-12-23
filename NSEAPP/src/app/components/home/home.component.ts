@@ -341,39 +341,35 @@ onCalcular():void{
     
       }
 
-
-
-
-
-
-
-
-
         switch (this.nvpuntajeAmai) {
          
-          case (1):
-           this.resultado = "AB"
-             break;
-          case (2):
-            this.resultado = "C1"
-             break;
-          case (3):
-            this.resultado = "C2"
-             break;
+        case (1):
+        this.resultado = "AB"
+        break;
+          
+        case (2):
+        this.resultado = "C1"
+        break;
+          
+        case (3):
+        this.resultado = "C2"
+        break;
   
-             case (4):
-              this.resultado = "D1"
-              break;
-              case (5):
-                case (4):
-                  this.resultado = "D2"
-                break;
-                case (6):
-                  this.resultado = "E1"
-                  break;
-                  case (7):
-                    this.resultado = "E2"
-                    break;
+        case (4):
+        this.resultado = "D1"
+        break;
+             
+        case (5):
+        this.resultado = "D2"
+        break;
+        
+        case (6):
+        this.resultado = "E1"
+        break;
+
+        case (7):
+        this.resultado = "E2"
+        break;
                    
    
           default:
