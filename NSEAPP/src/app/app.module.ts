@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,6 +12,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 import { ROUTES } from './components/app.routes';
 import { AboutComponent } from './components/about/about.component';
+import { FormsModule } from '@angular/forms';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { AboutComponent } from './components/about/about.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot( ROUTES, {useHash:true})
+    RouterModule.forRoot( ROUTES, {useHash:true}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
