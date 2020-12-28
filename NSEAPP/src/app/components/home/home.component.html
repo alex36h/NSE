@@ -1,38 +1,40 @@
-<div class="container">
+<div class="container rounded fadeIn">
 
     <form action="">
         <br>
         <div class="form-group">
             <label for="">Cuarto</label>
-            <input type="number" class="form-control" placeholder="Digite la Cantidad de Cuartos" [(ngModel)]="cuarto" name="Cuarto" />
+            <input type="number" class="form-control" placeholder="Digite la Cantidad de Cuartos" [(ngModel)]="cuarto" required minlength="4" name="Cuarto" />
         </div>
 
         <div class="form-group">
             <label for="">Bujias</label>
-            <input type="number" class="form-control" placeholder="Digite la cantidad de Bujias" [(ngModel)]="bujia" name="Bujia" />
+            <input type="number" class="form-control" placeholder="Digite la cantidad de Bujias" [(ngModel)]="bujia" required name="Bujia" />
 
         </div>
 
         <div class="form-group">
-            <label for="">Autos del 2013 hacia la Fecha</label>
-            <input type="number" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos" name="autos" />
+            <label for="">Autos del 2015 hacia la Fecha</label>
+            <input type="number" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos" required name="autos" />
 
         </div>
 
         <div class="form-group">
-            <label for="">Autos del 2012 a menos </label>
+            <label for="">Autos del 2014 a menos o anteriores </label>
             <input type="number" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos1" name="autos1" />
 
         </div>
 
 
 
+
+
+
         <div class="form-group">
             <label for="">Smart Tv Con acceso a Internet</label>
-            <select class="form-control" [(ngModel)]="smarttv" name="smartv">
-            <option value="0" selected="selected">Seleccione</option>
-            <option value="1" >Si</option>
-            <option value="2" >No</option>
+            <select class="form-control" [(ngModel)]="smarttv" name="operacion">
+            <option *ngFor="let op of opcionesTV" [value]="op.cod"> {{op.muestraValor}}</option>
+
       
             
             </select>
@@ -41,37 +43,30 @@
 
         <div class="form-group">
             <label for="">Secadora</label>
-            <select class="form-control" [(ngModel)]="secadora" name="secadora">
-            <option value="0" selected="selected">Seleccione</option>
-            <option value="1" >Si</option>
-            <option value="2" >No</option>
+            <select class="form-control" [(ngModel)]="secadora" name="operacionse">
+            <option *ngFor="let op of opcionesSecadora" [value]="op.cod"> {{op.muestraValor}}</option>
+
       
             
             </select>
         </div>
+
+
+
 
 
         <div class="form-group">
-            <label for="">Educacion</label>
-            <select class="form-control" [(ngModel)]="educacion" name="educacion">
-            <option value="0" selected="selected">Seleccione</option>
-            <option value="1" >Sin estudio</option>
-            <option value="2" >Primaria incompleta</option>
-            <option value="3" >Primaria completa</option>
-            <option value="4" >Secundaria incompleta</option>
-            <option value="5" >Secundaria completa</option>
-            <option value="6" >Técnico incompleto	</option>
-            <option value="7" >Técnico completo</option>
-            <option value="8" >Universidad incompleta</option>
-            <option value="9" >Universidad completa</option>
-            <option value="10" >Posgrado incompleto</option>
-            <option value="11" >Posgrado completo</option>
-
+            <label for="">Escolaridad del Principal Soporte del Hogar</label>
+            <select class="form-control" [(ngModel)]="educacion" name="operacionedu">
+            <option *ngFor="let op of opcionesEstudio" [value]="op.cod"> {{op.muestraValor}}</option>
 
       
             
             </select>
         </div>
+
+
+
 
 
         <button type="submit" class="btn btn-primary" (click)="onCalcular()">Calcular Nivel Socio Economico</button>

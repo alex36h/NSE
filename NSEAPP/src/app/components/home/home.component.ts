@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +18,7 @@ export class HomeComponent implements OnInit {
   bujia:number;
   autos:number;
   autos1:number;
-  smarttv:number;
-  secadora:number;
-  educacion:number;
+
   
 
   nvcuarto:number;
@@ -35,7 +35,46 @@ resultado:string;
 
 
 
+opcionesTV = [
+  {cod:'0', muestraValor:'Seleccione'},
+  {cod:'1', muestraValor:'Si'},
+  {cod:'0', muestraValor:'No'}
+];
+
+smarttv: string = this.opcionesTV[0].cod;
+
+opcionesSecadora = [
+  {cod:'0', muestraValor:'Seleccione'},
+  {cod:'1', muestraValor:'Si'},
+  {cod:'0', muestraValor:'No'}
+];
+
+secadora: string = this.opcionesSecadora[0].cod;
+
+
+opcionesEstudio = [
+  {cod:'0', muestraValor:'Seleccione'},
+  {cod:'1', muestraValor:'Sin estudio'},
+  {cod:'2', muestraValor:'Primaria incompleta'},
+  {cod:'3', muestraValor:'Primaria completa'},
+  {cod:'4', muestraValor:'Secundaria incompleta'},
+  {cod:'5', muestraValor:'Secundaria completa'},
+  {cod:'6', muestraValor:'Técnico incompleto'},
+  {cod:'7', muestraValor:'Técnico completo'},
+  {cod:'8', muestraValor:'Universidad incompleta'},
+  {cod:'9', muestraValor:'Universidad completa'},
+  {cod:'10', muestraValor:'Posgrado incompleto'},
+  {cod:'11', muestraValor:'Posgrado completo'}
+
+];
+
+educacion: string = this.opcionesEstudio[0].cod;
+
+
+
+
 onCalcular():void{
+
 
  //Calculo de la Variable Cuarto
 
@@ -165,7 +204,7 @@ onCalcular():void{
 
       // Calculo de la Variable Smart Tv
 
-      if (this.smarttv == 1)
+      if (this.smarttv=="1")
       {
     
         this.nvsmarttv = 31;
@@ -175,7 +214,7 @@ onCalcular():void{
    
          // Calculo de la Variable Secadora
 
-         if (this.secadora == 1)
+         if (this.secadora == "1")
          {
        
            this.nvsecadora = 17;
@@ -186,7 +225,7 @@ onCalcular():void{
          
          // Calculo de la Variable Escolaridad
 
-         if (this.educacion == 1)
+         if (this.educacion == "1")
          {
        
            this.nveducacion = 3;
@@ -194,7 +233,7 @@ onCalcular():void{
        
          }
 
-         else if (this.educacion ==2)
+         else if (this.educacion =="2")
          {
        
            this.nveducacion = 6;
@@ -203,7 +242,7 @@ onCalcular():void{
          }
 
          
-         else if (this.educacion ==3)
+         else if (this.educacion =="3")
          {
        
            this.nveducacion = 10;
@@ -211,7 +250,7 @@ onCalcular():void{
        
          }
 
-         else if (this.educacion ==4)
+         else if (this.educacion =="4")
          {
        
            this.nveducacion = 20;
@@ -219,7 +258,7 @@ onCalcular():void{
        
          }
       
-         else if (this.educacion ==5)
+         else if (this.educacion =="5")
          {
        
            this.nveducacion = 40;
@@ -227,7 +266,7 @@ onCalcular():void{
        
          }
 
-         else if (this.educacion ==6)
+         else if (this.educacion =="6")
          {
        
            this.nveducacion = 20;
@@ -235,7 +274,7 @@ onCalcular():void{
        
          }
          
-         else if (this.educacion ==7)
+         else if (this.educacion =="7")
          {
        
            this.nveducacion = 40;
@@ -245,7 +284,7 @@ onCalcular():void{
 
 
                 
-         else if (this.educacion ==8)
+         else if (this.educacion =="8")
          {
        
            this.nveducacion = 50;
@@ -255,7 +294,7 @@ onCalcular():void{
 
 
                 
-         else if (this.educacion ==9)
+         else if (this.educacion =="9")
          {
        
            this.nveducacion = 70;
@@ -263,7 +302,7 @@ onCalcular():void{
        
          }
 
-         else if (this.educacion ==10)
+         else if (this.educacion =="10")
          {
        
            this.nveducacion = 80;
@@ -271,7 +310,7 @@ onCalcular():void{
        
          }
 
-         else if (this.educacion ==11)
+         else if (this.educacion =="11")
          {
        
            this.nveducacion = 100;
@@ -345,45 +384,82 @@ onCalcular():void{
          
         case (1):
         this.resultado = "AB"
+
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
           
         case (2):
         this.resultado = "C1"
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
           
         case (3):
         this.resultado = "C2"
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
   
         case (4):
         this.resultado = "D1"
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
              
         case (5):
         this.resultado = "D2"
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
         
         case (6):
         this.resultado = "E1"
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
 
         case (7):
         this.resultado = "E2"
+        Swal.fire(
+          'Su Nivel Socioeconómico es:' +" "+this.resultado,
+          '' ,
+          'success'
+        )
         break;
                    
-   
+     
           default:
              //Acción por defecto
        }
-     
+
         
+       
      
       
       
    
       
       
-      
+   
       
       
       
