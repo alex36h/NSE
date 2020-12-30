@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { FormGroup,FormControl,Validator, Validators } from '@angular/forms';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,25 +10,46 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
 
+  forma:FormGroup;
 
-  constructor() { }
+
+  constructor() { 
+
+    this.forma = new FormGroup({
+    'Cuarto': new FormControl('',Validators.required),
+    'bujia': new FormControl('',Validators.required),
+    'autos': new FormControl('',Validators.required),
+    'autos1': new FormControl('',Validators.required),
+    'tv': new FormControl(this.opcionesTV[0].cod,Validators.required),
+    'sec': new FormControl('',Validators.required),
+    'edu': new FormControl('',Validators.required)
+
+    });
+  }
+
+
+
+
 
   ngOnInit(): void {
+
+    
+
   }
   cuarto:number;
   bujia:number;
   autos:number;
   autos1:number;
 
-  
 
-  nvcuarto:number;
-  nvbujia:number;
-  nvautos:number;
-  nvautos1:number;
-  nvsmarttv:number;
-  nvsecadora:number;
-  nveducacion:number;
+
+  nvcuarto:number =0;
+  nvbujia:number=0;
+  nvautos:number=0;
+  nvautos1:number=0;
+  nvsmarttv:number=0;
+  nvsecadora:number=0;
+  nveducacion:number=0;
   
 puntajeAmai:number;
 nvpuntajeAmai:number;
@@ -38,7 +60,7 @@ resultado:string;
 opcionesTV = [
   {cod:'0', muestraValor:'Seleccione'},
   {cod:'1', muestraValor:'Si'},
-  {cod:'0', muestraValor:'No'}
+  {cod:'2', muestraValor:'No'}
 ];
 
 smarttv: string = this.opcionesTV[0].cod;
@@ -46,7 +68,7 @@ smarttv: string = this.opcionesTV[0].cod;
 opcionesSecadora = [
   {cod:'0', muestraValor:'Seleccione'},
   {cod:'1', muestraValor:'Si'},
-  {cod:'0', muestraValor:'No'}
+  {cod:'2', muestraValor:'No'}
 ];
 
 secadora: string = this.opcionesSecadora[0].cod;
@@ -72,11 +94,47 @@ educacion: string = this.opcionesEstudio[0].cod;
 
 
 
+guardar(){
+
+  console.log(this.forma.value)
+
+}
+
+clear(){
+  
+  this.nvcuarto =0;
+  this.nvbujia=0;
+  this.nvautos=0;
+  this.nvautos1=0;
+
+ this.puntajeAmai=null;
+ this.nvpuntajeAmai=null;
+
+this.forma.controls['Cuarto'].setValue('');
+this.forma.controls['bujia'].setValue('');
+this.forma.controls['autos'].setValue('');
+this.forma.controls['autos1'].setValue('');
+this.smarttv="0";
+this.secadora="0";
+this.educacion="0";
+
+
+this.nvsmarttv=null;
+this.nvsecadora=null;
+this.nveducacion=null;
+
+
+
+
+
+
+}
 
 onCalcular():void{
 
 
  //Calculo de la Variable Cuarto
+
 
   if (this.cuarto == 1)
   {
@@ -108,7 +166,7 @@ onCalcular():void{
    //Calculo de la Variable Bujia
 
 
-   if (this.bujia <= 8)
+   if (this.bujia > 0  && this.puntajeAmai  <= 8 )
    {
  
      this.nvbujia = 5;
@@ -323,7 +381,7 @@ onCalcular():void{
       console.log("Este es el Puntaje Amai" + " " + this.puntajeAmai);
       
      
-       if (this.puntajeAmai >= 0 && this.puntajeAmai <= 18)
+       if (this.puntajeAmai > 0 && this.puntajeAmai <= 18)
       {
     
         this.nvpuntajeAmai = 7;
@@ -380,118 +438,94 @@ onCalcular():void{
     
       }
 
+      if (this.puntajeAmai == 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Aun no ha Ingresado Datos'
+          
+        })
+
+        
+      } else {
         switch (this.nvpuntajeAmai) {
          
-        case (1):
-        this.resultado = "AB"
-
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
-          
-        case (2):
-        this.resultado = "C1"
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
-          
-        case (3):
-        this.resultado = "C2"
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
+          case (1):
+          this.resultado = "AB"
   
-        case (4):
-        this.resultado = "D1"
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
-             
-        case (5):
-        this.resultado = "D2"
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
-        
-        case (6):
-        this.resultado = "E1"
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
-
-        case (7):
-        this.resultado = "E2"
-        Swal.fire(
-          'Su Nivel Socioeconómico es:' +" "+this.resultado,
-          '' ,
-          'success'
-        )
-        break;
-                   
-     
-          default:
-             //Acción por defecto
-       }
-
-        
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+            
+          case (2):
+          this.resultado = "C1"
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+            
+          case (3):
+          this.resultado = "C2"
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+    
+          case (4):
+          this.resultado = "D1"
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+               
+          case (5):
+          this.resultado = "D2"
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+          
+          case (6):
+          this.resultado = "E1"
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+  
+          case (7):
+          this.resultado = "E2"
+          Swal.fire(
+            'Su Nivel Socioeconómico es:' +" "+this.resultado,
+            '' ,
+            'success'
+          )
+          break;
+                     
        
-     
-      
-      
+            default:
+               //Acción por defecto
+         }
+
+         this.clear();
+        
    
-      
-      
-   
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-   
-   
+      }
 
-   
+  
 
-
-   
-
-
-   
-
-
-
-
-
-
-
-   
-
-   
 
 
 

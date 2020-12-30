@@ -1,27 +1,29 @@
-<div class="container rounded fadeIn">
+<div class="container rounded animated fadeIn">
 
-    <form action="">
+    <form [formGroup]="forma" (ngSubmit)="guardar()">
         <br>
         <div class="form-group">
-            <label for="">Cuarto</label>
-            <input type="number" class="form-control" placeholder="Digite la Cantidad de Cuartos" [(ngModel)]="cuarto" required minlength="4" name="Cuarto" />
+            <label for="">¿Cuántos  Cuartos (dormitorios)separados por pared hay en su hogar? (No divisiones con Cortinas, ropero,biombo, etc)? </label>
+            <input type="number" min="0" class="form-control" placeholder="Digite la Cantidad de Dormitorios" [(ngModel)]="cuarto" formControlName="Cuarto" [ngClass]="{'is-valid': forma.get('Cuarto').valid}" />
         </div>
 
         <div class="form-group">
-            <label for="">Bujias</label>
-            <input type="number" class="form-control" placeholder="Digite la cantidad de Bujias" [(ngModel)]="bujia" required name="Bujia" />
+            <label for="">¿Cuántas bujías en total tienen en la vivienda (incluye lámparas de escritorio)?</label>
+            <input type="number" min="0" max="10" class="form-control  " placeholder="Digite la cantidad de Bujias" [(ngModel)]="bujia" formControlName="bujia" [ngClass]="{'is-valid': forma.get('bujia').valid}" />
 
-        </div>
 
-        <div class="form-group">
-            <label for="">Autos del 2015 hacia la Fecha</label>
-            <input type="number" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos" required name="autos" />
 
         </div>
 
         <div class="form-group">
-            <label for="">Autos del 2014 a menos o anteriores </label>
-            <input type="number" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos1" name="autos1" />
+            <label for="">¿Cuántos vehículos propios del año 2015 al año 2020 tienen en su hogar?</label>
+            <input type="number" min="0" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos" formControlName="autos" [ngClass]="{'is-valid': forma.get('autos').valid}" />
+
+        </div>
+
+        <div class="form-group">
+            <label for="">¿Cuántos vehículos propios del año 2014 o anteriores tienen en su hogar?</label>
+            <input type="number" min="0" class="form-control" placeholder="Digite la cantidad de Autos" [(ngModel)]="autos1" formControlName="autos1" [ngClass]="{'is-valid': forma.get('autos1').valid}" />
 
         </div>
 
@@ -31,9 +33,11 @@
 
 
         <div class="form-group">
-            <label for="">Smart Tv Con acceso a Internet</label>
-            <select class="form-control" [(ngModel)]="smarttv" name="operacion">
-            <option *ngFor="let op of opcionesTV" [value]="op.cod"> {{op.muestraValor}}</option>
+            <label for="">¿Tiene televisor Smart TV con servicio de internet (fijo o modem)?</label>
+            <select class="form-control" [(ngModel)]="smarttv" formControlName="tv">
+                
+              
+            <option *ngFor="let op of opcionesTV" [value]="op.cod"  > {{op.muestraValor}}</option>
 
       
             
@@ -42,8 +46,8 @@
 
 
         <div class="form-group">
-            <label for="">Secadora</label>
-            <select class="form-control" [(ngModel)]="secadora" name="operacionse">
+            <label for="">¿En su hogar tiene Lavadora/Secadora eléctrica?</label>
+            <select class="form-control" [(ngModel)]="secadora" formControlName="sec">
             <option *ngFor="let op of opcionesSecadora" [value]="op.cod"> {{op.muestraValor}}</option>
 
       
@@ -56,8 +60,8 @@
 
 
         <div class="form-group">
-            <label for="">Escolaridad del Principal Soporte del Hogar</label>
-            <select class="form-control" [(ngModel)]="educacion" name="operacionedu">
+            <label for="">¿Cual es la Escolaridad del Principal Soporte del Hogar?</label>
+            <select class="form-control" [(ngModel)]="educacion" formControlName="edu">
             <option *ngFor="let op of opcionesEstudio" [value]="op.cod"> {{op.muestraValor}}</option>
 
       
@@ -67,15 +71,16 @@
 
 
 
+        <div class="row">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-outline-danger" (click)="onCalcular()"> <strong> Medir Nivel Socioeconómico </strong></button>
+            </div>
+        </div>
 
-
-        <button type="submit" class="btn btn-primary" (click)="onCalcular()">Calcular Nivel Socio Economico</button>
+        <br>
+        <br>
 
 
     </form>
-
-
-    <p>El Resultado del Nivel Socio Economico es: {{resultado}}</p>
-
 
 </div>

@@ -12,20 +12,23 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 import { ROUTES } from './components/app.routes';
 import { AboutComponent } from './components/about/about.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { from } from 'rxjs';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot( ROUTES, {useHash:true}),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
